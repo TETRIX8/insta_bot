@@ -1,0 +1,9 @@
+name: instagram-video-bot
+version: '1.0'
+description: Telegram бот для скачивания видео из Instagram вместе с аудио и описанием
+author: Manus AI
+dependencies:
+  - python-telegram-bot>=22.0
+  - yt-dlp>=2025.5.0
+  - ffmpeg-python>=0.2.0
+  - requests>=2.32.0
