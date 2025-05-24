@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавление шаблона комментария | Админ-панель Telegram бота{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header">
+                <h2>Добавление шаблона комментария</h2>
+            </div>
+            <div class="card-body">
+                <form method="post" action="{{ url_for('comments.add') }}">
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Описание шаблона</label>
+                        <input type="text" class="form-control" id="description" name="description" placeholder="Краткое описание шаблона">
+                        <div class="form-text">Необязательное поле для удобства идентификации шаблона</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="text" class="form-label">Текст комментария</label>
+                        <textarea class="form-control" id="text" name="text" rows="5" required></textarea>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('comments.index') }}" class="btn btn-secondary">Отмена</a>
+                        <button type="submit" class="btn btn-primary">Добавить шаблон</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

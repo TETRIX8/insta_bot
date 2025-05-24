@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Посты канала | Админ-панель Telegram бота{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-8">
+        <h1>Посты канала "{{ channel.channel_name }}"</h1>
+    </div>
+    <div class="col-md-4 text-end">
+        <a href="{{ url_for('channels.index') }}" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Назад к каналам
+        </a>
+    </div>
+</div>
+
+{% if posts %}
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Содержание</th>
+                <th>Дата публикации</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <td>{{ post.message_id }}</td>
+                <td>
+                    {% if post.content %}
+                    {{ post.content[:100] }}{% if post.content|length > 100 %}...{% endif %}
+                    {% else %}
+                    <em>Нет текста</em>
+                    {% endif %}
+                </td>
+                <td>{{ post.posted_at.strftime('%d.%m.%Y %H:%M') }}</td>
+                <td>
+                    <a href="{{ url_for('comments.post_comments', post_id=post.id) }}" class="btn btn-sm btn-primary">
+                        <i class="bi bi-chat"></i> Комментарии
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="alert alert-info">
+    <i class="bi bi-info-circle"></i> Нет постов для этого канала.
+</div>
+{% endif %}
+{% endblock %}

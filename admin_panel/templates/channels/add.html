@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавление канала | Админ-панель Telegram бота{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header">
+                <h2>Добавление нового канала</h2>
+            </div>
+            <div class="card-body">
+                <form method="post" action="{{ url_for('channels.add') }}">
+                    <div class="mb-3">
+                        <label for="channel_username" class="form-label">Имя пользователя канала</label>
+                        <div class="input-group">
+                            <span class="input-group-text">@</span>
+                            <input type="text" class="form-control" id="channel_username" name="channel_username" placeholder="название_канала" required>
+                        </div>
+                        <div class="form-text">Введите имя пользователя канала без символа @, например: "durov"</div>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('channels.index') }}" class="btn btn-secondary">Отмена</a>
+                        <button type="submit" class="btn btn-primary">Добавить канал</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
